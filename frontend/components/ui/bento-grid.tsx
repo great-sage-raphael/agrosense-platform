@@ -1,5 +1,7 @@
+"use client";
 import { cn } from "@/lib/utils";
 
+// This is a Client Component — hover state is managed here via CSS transitions
 export const BentoGrid = ({
     className,
     children,
@@ -8,12 +10,7 @@ export const BentoGrid = ({
     children: React.ReactNode;
 }) => {
     return (
-        <div
-            className={cn(
-                "grid md:auto-rows-[18rem] grid-cols-1 md:grid-cols-3 gap-4 max-w-7xl mx-auto ",
-                className
-            )}
-        >
+        <div className={cn("grid md:auto-rows-[18rem] grid-cols-1 md:grid-cols-3 gap-5 max-w-7xl mx-auto", className)}>
             {children}
         </div>
     );
@@ -35,17 +32,21 @@ export const BentoGridItem = ({
     return (
         <div
             className={cn(
-                "row-span-1 rounded-[4px] group/bento hover:shadow-md transition duration-200 shadow-black/5 p-4 bg-white border border-border-thin flex flex-col space-y-4",
+                "row-span-1 rounded-2xl group/bento transition-all duration-300 p-5 flex flex-col space-y-4 cursor-pointer",
+                // CSS-only glass hover — no JS event handlers needed
+                "bento-glass-item",
                 className
             )}
         >
             {header}
-            <div className="group-hover/bento:translate-x-2 transition duration-200">
-                {icon}
-                <div className="font-sans font-bold text-black-600 dark:text-black-200 mb-2 mt-2">
+            <div className="group-hover/bento:translate-x-1 transition duration-200">
+                {icon && (
+                    <span style={{ color: 'rgba(81,154,102,0.45)' }}>{icon}</span>
+                )}
+                <div className="font-bold mb-1 mt-2 text-base tracking-tight" style={{ color: '#519A66' }}>
                     {title}
                 </div>
-                <div className="font-sans font-normal text-black-600 text-xs dark:text-black-300">
+                <div className="font-normal text-xs leading-relaxed" style={{ color: 'rgba(81,154,102,0.60)' }}>
                     {description}
                 </div>
             </div>

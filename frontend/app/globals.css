@@ -1,30 +1,32 @@
 @import "tailwindcss";
 
 :root {
-  /* Nutriveda Palette */
-  --background: #F9FAFB;
-  /* Very Light Gray/White */
-  --foreground: #111827;
-  /* Deep Charcoal (Primary Text) */
-  --text-secondary: #374151;
-  /* Slate Grey */
+  /* Root Net — ColorHunt Palette */
+  --background: #FEFAE0;
+  /* Warm cream canvas */
+  --foreground: #519A66;
+  /* Dark olive — primary text */
+  --text-secondary: #7A8B69;
+  /* Muted sage for secondary text */
 
-  --sage: #8A9A5B;
-  /* Sage Green Accent */
-  --sage-active: #8A9A5B;
-  /* Sage Green for active */
-  --sage-dark: #748250;
+  --olive: #519A66;
+  /* Primary dark olive */
+  --olive-dark: #3d7a4f;
+  /* Darker hover */
+  --sage: #A9B388;
+  /* Sage green accent */
+  --warm-brown: #B99470;
+  /* Warm tan accent */
 
-  --lime-white: #ECFCCB;
-  /* Secondary Highlight */
+  --blob-1: #A9B388;
+  /* Sage blob */
+  --blob-2: #B99470;
+  /* Warm tan blob */
 
-  --stone-forest: #111827;
-  /* Sidebar Background (Deep Charcoal) */
-  --slate-grey: #6B7280;
-  --ivory: #ffffff;
-  /* Pure white for cards */
+  --stone-forest: rgba(81, 154, 102, 0.92);
+  --ivory: #FEFAE0;
 
-  --color-border-thin: #E5E7EB;
+  --color-border-thin: rgba(81, 154, 102, 0.15);
 }
 
 @theme inline {
@@ -32,32 +34,69 @@
   --color-foreground: var(--foreground);
   --color-text-secondary: var(--text-secondary);
   --color-sage: var(--sage);
-  --color-sage-active: var(--sage-active);
-  --color-sage-dark: var(--sage-dark);
+  --color-sage-active: var(--olive);
+  --color-sage-dark: var(--olive-dark);
   --color-stone-forest: var(--stone-forest);
-  --color-slate-grey: var(--slate-grey);
   --color-ivory: var(--ivory);
   --color-forest: var(--foreground);
-  --color-lime-white: var(--lime-white);
-  /* Added */
-  /* Map forest to main black */
+  --color-olive: var(--olive);
+  --color-olive-dark: var(--olive-dark);
+  --color-warm-brown: var(--warm-brown);
   --color-border-thin: var(--color-border-thin);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #1a1f18;
-    /* Darker Forest */
-    --foreground: #405840;
-    /* Ivory */
-  }
+  --font-sans: 'Outfit', system-ui, sans-serif;
+  --font-mono: ui-monospace, monospace;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), system-ui, sans-serif;
+  font-family: 'Outfit', system-ui, sans-serif;
   overflow-x: hidden;
+}
+
+/* Glassmorphism — cream-tinted cards that pop against colored blobs */
+.glass-card {
+  background: rgba(254, 250, 224, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.60);
+  box-shadow: 0 8px 32px rgba(81, 154, 102, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  border-radius: 1rem;
+}
+
+/* Bento grid cards — CSS-only hover, no JS handlers needed */
+.bento-glass-item {
+  background: rgba(254, 250, 224, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.60);
+  box-shadow: 0 8px 32px rgba(81, 154, 102, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.55);
+  transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
+}
+
+.bento-glass-item:hover {
+  background: rgba(254, 250, 224, 0.75);
+  box-shadow: 0 12px 40px rgba(81, 154, 102, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  transform: translateY(-2px);
+}
+
+
+.glass-input {
+  background: rgba(254, 250, 224, 0.30);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: none;
+  border-bottom: 1.5px solid rgba(81, 154, 102, 0.30);
+  border-radius: 0;
+  color: #519A66;
+}
+
+.glass-input::placeholder {
+  color: rgba(81, 154, 102, 0.45);
+}
+
+.glass-input:focus {
+  outline: none;
+  border-bottom-color: #519A66;
+  background: rgba(254, 250, 224, 0.50);
 }
